@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
+import 'package:medisave/pages/splashpage.dart';
+import 'package:medisave/pages/welcomelogin.dart';
+/*import 'package:provider/provider.dart';*/
+
 void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: SplashPage(
+      duration: 3,
+      goToPage: WelcomePage(),
+    ),
+  ));
+}
+
+/*void main() {
   runApp(MyApp());
 }
 
@@ -9,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo2',
+      title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,7 +36,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'MediFake'),
+      home: MyHomePage(title: 'MediFake2'),
     );
   }
 }
@@ -110,4 +124,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
+}*/
