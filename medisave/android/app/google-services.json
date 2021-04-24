@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "411286040840",
+    "project_id": "medisave-baa60",
+    "storage_bucket": "medisave-baa60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411286040840:android:795b99e7a8737a5952fcbd",
+        "android_client_info": {
+          "package_name": "com.example.medisave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411286040840-pu7knq8pgdkb632i87960ajbh1c8p6po.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medisave",
+            "certificate_hash": "cd081ec5de9c470c7db829561abf164b80776500"
+          }
+        },
+        {
+          "client_id": "411286040840-hum3ltcap9ea1cjd8n9min6vkhilq42r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVm_rSwaCSQy_2Tjzjf-2AIaHhj9HLEeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "411286040840-hum3ltcap9ea1cjd8n9min6vkhilq42r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

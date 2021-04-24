@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
 
 class SplashPage extends StatelessWidget {
-  int duration = 0;
+  final int duration = 0;
   Widget goToPage;
 
-  SplashPage({this.goToPage, this.duration});
+  SplashPage({this.goToPage});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +21,7 @@ class SplashPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                child: Image.asset('assets/imgs/perfil.ico'),
-              ),
+                  child: Image(image: AssetImage('assets/imgs/perfil.jpg'))),
               Padding(padding: EdgeInsets.only(top: 20)),
               Padding(padding: EdgeInsets.only(top: 20.0)),
             ]),
