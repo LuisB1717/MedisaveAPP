@@ -23,6 +23,7 @@ class ThemeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var onAuthStateChanged;
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
       child: ClipRRect(

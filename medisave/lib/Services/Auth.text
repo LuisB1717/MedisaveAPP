@@ -1,0 +1,80 @@
+/*import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+enum AuthStatus{
+  Uninitializer, // No inicializado
+  Authenticated, //Autenticado
+  Authenticating, //Auntenticando
+  Unauthenticated //No autenticado
+}
+
+class AuthService with ChangeNotifier {
+  final FirebaseAuth _auth;
+  GoogleSignInAccount _googleUser;
+  User _user;
+
+
+final Firestore _db = Firestore.instance;
+  AuthStatus _status = AuthStatus.Uninitializer;
+
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
+   AuthService.instance() : _auth = FirebaseAuth.instance {
+    _auth.onAuthStateChanged.listen(_onAuthStateChanged);
+   }
+
+   Future<void> _onAuthStateChanged(FirebaseUser firebaseUser) async {
+    if (firebaseUser == null) {
+       _status = AuthStatus.Unauthenticated;
+    } else {
+       DocumentSnapshot userSnap = await _db
+         .collection('users')
+        .document(firebaseUser.uid)
+         .get();
+
+       _user = User.fromFirestore(userSnap);
+       _status = AuthStatus.Authenticated;
+     }
+
+     notifyListeners();
+   }
+
+  Future <FirebaseUser> googleSignIn() async {
+    _status = AuthStatus.Authenticating;
+    notifyListeners();
+
+    try {
+      GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+      GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      this._googleUser = googleUser;
+
+      final AuthCredential credential = GoogleAuthProvider
+        .getCredential(
+          idToken: googleAuth.idToken,
+          accessToken: googleAuth.accessToken,
+        );
+      AuthResult authResult = await _auth.signInWithCredential(credential);
+      print(authResult)
+      FirebaseUser user = authResult.user;
+    } catch (e) {
+      _status = AuthStatus.Uninitializer;
+      notifyListeners();
+      return null;
+    }
+  }
+
+  void signOut() {
+    _auth.signOut();
+    _status = AuthStatus.Unauthenticated;
+    notifyListeners();
+  }
+
+  AuthStatus get status => _status;
+  User get user => _user;
+  GoogleSignInAccount get googleUser => _googleUser;
+
+
+}*/
