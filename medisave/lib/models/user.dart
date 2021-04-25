@@ -2,33 +2,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class User with ChangeNotifier {
-  String id;
-  String displayName;
-  String photoURL;
+  String nombre;
+  String fotoURL;
   String email;
 
-  User({ 
-    this.id, 
-    this.displayName, 
-    this.photoURL,
+  User({
+    this.nombre,
+    this.fotoURL,
     this.email,
   });
 
   factory User.fromFirestore(DocumentSnapshot userDoc) {
-    Map userData = userDoc.data;
+    Map userData = userDoc.data as Map;
     return User(
-      id: userDoc.documentID,
-      displayName: userData['displayName'],
-      photoURL: userData['photoURL'],
+      nombre: userData['displayName'],
+      fotoURL: userData['photoURL'],
       email: userData['email'],
     );
   }
-
   void setFromFireStore(DocumentSnapshot userDoc) {
-    Map userData = userDoc.data;
-    this.id = userDoc.documentID;
-    this.displayName = userData['displayName'];
-    this.photoURL = userData['photoURL'];
+    Map userData = userDoc.data as Map;
+    this.nombre = userData['displayName'];
+    this.fotoURL = userData['photoURL'];
     this.email = userData['email'];
     notifyListeners();
   }
