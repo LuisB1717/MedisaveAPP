@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medisave/Services/auth_2.dart';
+import 'package:medisave/helpers/appcolor.dart';
 import 'package:provider/provider.dart';
 
 class GoogleSignupButtonWidget extends StatelessWidget {
@@ -9,7 +10,7 @@ class GoogleSignupButtonWidget extends StatelessWidget {
         padding: EdgeInsets.all(4),
         child: OutlineButton.icon(
           label: Text(
-            'Sign In With Google',
+            'Acceder con Google',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           shape: StadiumBorder(),
@@ -17,7 +18,7 @@ class GoogleSignupButtonWidget extends StatelessWidget {
           highlightedBorderColor: Colors.black,
           borderSide: BorderSide(color: Colors.black),
           textColor: Colors.black,
-          icon: FaIcon(FontAwesomeIcons.google, color: Colors.red),
+          icon: FaIcon(FontAwesomeIcons.google, color: AppColors.BACKGROUND),
           onPressed: () {
             final provider =
                 Provider.of<GoogleSignInProvider>(context, listen: false);
