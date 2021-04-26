@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medisave/Services/auth_2.dart';
 import 'package:medisave/helpers/appcolor.dart';
+import 'package:medisave/pages/homepage.dart';
 import 'package:medisave/widgets/background_painter.dart';
 import 'package:medisave/widgets/logged_in_widget.dart';
 import 'package:medisave/widgets/sign_up_widget.dart';
@@ -20,7 +21,8 @@ class HomePage extends StatelessWidget {
               if (provider.isSigningIn) {
                 return buildLoading(context);
               } else if (snapshot.hasData) {
-                return LoggedInWidget();
+                return HomePageLogin();
+                //LoggedInWidget();
               } else {
                 return SignUpWidget();
               }
