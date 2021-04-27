@@ -48,7 +48,10 @@ class HomePage extends StatelessWidget {
             child: Image.asset('assets/imgs/mvlog.png'),
           ),
         ),
-        Center(child: CircularProgressIndicator()),
+        Center(
+            child: CircularProgressIndicator(
+                valueColor:
+                    new AlwaysStoppedAnimation<Color>(AppColors.BACKGROUND))),
       ],
       /*
           CustomPaint(painter: BackgroundPainter()),
