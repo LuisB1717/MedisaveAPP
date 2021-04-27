@@ -55,14 +55,21 @@ class LoggedInWidget extends StatelessWidget {
             Divider(
                 height: 50,
                 color: Colors.white,
-                thickness: 2,
+                thickness: 1,
                 indent: 18,
                 endIndent: 18),
             SizedBox(height: 8),
             ListTile(
               leading: Icon(Icons.person, color: Colors.white),
               title:
-                  Text('Invitar Amigo', style: TextStyle(color: Colors.white)),
+                  Text('Amigos', style: TextStyle(color: Colors.white)),
+              onTap: null,
+            ),
+            SizedBox(height: 8),
+            ListTile(
+              leading: Icon(Icons.fiber_smart_record, color: Colors.white),
+              title:
+                  Text('Historial', style: TextStyle(color: Colors.white)),
               onTap: null,
             ),
             SizedBox(height: 8),
@@ -83,7 +90,7 @@ class LoggedInWidget extends StatelessWidget {
             Divider(
                 height: 50,
                 color: Colors.white,
-                thickness: 2,
+                thickness: 1,
                 indent: 18,
                 endIndent: 18),
             SizedBox(height: 1),
