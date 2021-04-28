@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:medisave/helpers/appcolor.dart';
-import 'boton.dart';
+import 'package:medisave/pages/add_recordatorio.dart';
+import 'button_tipo.dart';
 
 class Addmedicine extends StatelessWidget {
   @override
@@ -10,21 +12,15 @@ class Addmedicine extends StatelessWidget {
         appBar: AppBar(
             title: Text('Medicamento'), backgroundColor: AppColors.BACKGROUND),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(children: [
             SizedBox(height: 30),
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Nombre',
-                border: OutlineInputBorder(),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
-              /*onSaved: (value) {
-                        nameValue=value;
-                      },
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return "Llene este campo";
-                        }*/
             ),
             SizedBox(height: 15),
             MiBoton(),
@@ -32,27 +28,51 @@ class Addmedicine extends StatelessWidget {
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Dosis',
-                border: OutlineInputBorder(),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
               ),
             ),
             SizedBox(height: 15),
             TextFormField(
               decoration: InputDecoration(
-                labelText: 'Cantidad',
-                border: OutlineInputBorder(),
-              ),
+                  labelText: 'Cantidad',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
             ),
-            SizedBox(height: 80),
-            ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: AppColors.BACKGROUND,
-                ),
-                child: Text(
-                  "Continuar",
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
-                ))
+            SizedBox(height: 90),
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(
+                primary: AppColors.BACKGROUND,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
+              ),
+              onPressed: () => {},
+              label: Text(
+                "Continuar",
+                style: TextStyle(fontSize: 18.0, color: Colors.white),
+              ),
+              icon: Icon(Icons.next_week_rounded),
+            )
           ]),
         ));
   }
 }
+
+// ElevatedButton(
+//     onPressed: () {},
+//     style: ElevatedButton.styleFrom(
+//       primary: AppColors.BACKGROUND,
+//     ),
+//     child: Text(
+//       "Continuar",
+//       style: TextStyle(fontSize: 18.0, color: Colors.white),
+//     )),
+// SizedBox(height: 15),
+//  /*onSaved: (value) {
+//   nameValue=value;
+// },
+// validator: (value) {
+//   if (value.isEmpty) {
+//     return "Llene este campo";
+//   }*/

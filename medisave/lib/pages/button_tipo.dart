@@ -10,7 +10,7 @@ class MiBoton extends StatefulWidget {
 
 class _MiBotonState extends State<MiBoton> {
   String valueChoose;
-  List tipomedicamento = ['Pastilla', 'Inyección', 'Jarabe', 'Otro'];
+  List tipomedicamento = ['Pastilla', 'Inyección', 'Jarabe', 'Gotas', 'Otro'];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,14 +19,14 @@ class _MiBotonState extends State<MiBoton> {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
         child: DropdownButton(
             hint: Text("Tipo"),
             icon: Icon(Icons.arrow_drop_down),
             iconSize: 36,
             isExpanded: true,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black87,
               fontSize: 15.4,
             ),
             underline: SizedBox(),
