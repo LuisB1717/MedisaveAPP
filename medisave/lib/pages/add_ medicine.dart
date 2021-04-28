@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:medisave/helpers/appcolor.dart';
+import 'package:medisave/pages/add_recordatorio.dart';
 import 'boton.dart';
 
 class Addmedicine extends StatelessWidget {
@@ -44,7 +45,13 @@ class Addmedicine extends StatelessWidget {
             ),
             SizedBox(height: 80),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  Addreminder())),
+                    },
                 child: Text(
                   "Continuar",
                   style: TextStyle(fontSize: 18.0, color: Colors.black),
