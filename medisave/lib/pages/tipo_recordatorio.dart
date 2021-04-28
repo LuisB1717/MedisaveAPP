@@ -14,6 +14,7 @@ class _TipoRecordatorioState extends State<TipoRecordatorio> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
       decoration: BoxDecoration(border: Border.all(color: Colors.black)),
       child: DropdownButton(
           hint: Text('Seleccione Tipo de Recordatorio'),
