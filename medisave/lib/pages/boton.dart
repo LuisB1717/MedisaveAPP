@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medisave/helpers/appcolor.dart';
 
 class MiBoton extends StatefulWidget {
   MiBoton({Key key}) : super(key: key);
@@ -13,20 +14,35 @@ class _MiBotonState extends State<MiBoton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(border: Border.all(color: Colors.black)),
-      child: DropdownButton(
-          value: valueChoose,
-          onChanged: (newValue) {
-            setState(() {
-              valueChoose = newValue;
-            });
-          },
-          items: tipomedicamento
-              .map((e) => DropdownMenuItem(
-                    child: Text(e),
-                    value: e,
-                  ))
-              .toList()),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.grey),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+        child: DropdownButton(
+            hint: Text("Tipo"),
+            icon: Icon(Icons.arrow_drop_down),
+            iconSize: 36,
+            isExpanded: true,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 15.4,
+            ),
+            underline: SizedBox(),
+            value: valueChoose,
+            onChanged: (newValue) {
+              setState(() {
+                valueChoose = newValue;
+              });
+            },
+            items: tipomedicamento
+                .map((e) => DropdownMenuItem(
+                      child: Text(e),
+                      value: e,
+                    ))
+                .toList()),
+      ),
     );
   }
 }

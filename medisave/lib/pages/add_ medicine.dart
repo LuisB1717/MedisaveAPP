@@ -45,9 +45,12 @@ class Addmedicine extends StatelessWidget {
             SizedBox(height: 80),
             ElevatedButton(
                 onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  primary: AppColors.BACKGROUND,
+                ),
                 child: Text(
                   "Continuar",
-                  style: TextStyle(fontSize: 18.0, color: Colors.black),
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
                 ))
           ]),
         ));
