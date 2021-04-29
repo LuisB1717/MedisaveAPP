@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/pages/tipo_recordatorio.dart';
+import 'package:medisave/widgets/date_picker.dart';
+import 'package:medisave/widgets/time_picker.dart';
 
 class Addreminder extends StatelessWidget {
   @override
@@ -24,8 +26,10 @@ class Addreminder extends StatelessWidget {
             TipoRecordatorio(),
             SizedBox(height: 15),
             TextFormField(
+              style: TextStyle(fontSize: 15, color: AppColors.BACKGROUND),
               decoration: InputDecoration(
-                labelText: 'Rango de Horas',
+                labelText:
+                    'Intervalo de Horas para la Administración de Medicamentos',
                 border: OutlineInputBorder(),
               ),
             ),
@@ -36,12 +40,24 @@ class Addreminder extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
+            SizedBox(height: 15),
+            DatePickerWidget(),
+            SizedBox(height: 15),
+            TimePickerWidget(),
             SizedBox(height: 80),
-            ElevatedButton(
+            ElevatedButton.icon(
+                icon: Icon(
+                  Icons.arrow_right_rounded,
+                  color: AppColors.BACKGROUND,
+                ),
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.white,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
                 onPressed: () {},
-                child: Text(
+                label: Text(
                   "Continuar",
-                  style: TextStyle(fontSize: 18.0, color: Colors.black),
+                  style: TextStyle(fontSize: 18.0, color: AppColors.BACKGROUND),
                 ))
           ]),
         ));
