@@ -11,50 +11,57 @@ class Addmedicine extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
             title: Text('Medicamento'), backgroundColor: AppColors.BACKGROUND),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-          child: Column(children: [
-            SizedBox(height: 30),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Nombre',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-              ),
-            ),
-            SizedBox(height: 15),
-            MiBoton(),
-            SizedBox(height: 15),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Dosis',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-              ),
-            ),
-            SizedBox(height: 15),
-            TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'Cantidad',
+        body: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+            child: Column(children: [
+              SizedBox(height: 30),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Nombre',
                   border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-            SizedBox(height: 90),
-            ElevatedButton.icon(
-              style: ElevatedButton.styleFrom(
-                primary: AppColors.BACKGROUND,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
+                      borderRadius: BorderRadius.circular(20)),
+                ),
               ),
-              onPressed: () => {},
-              label: Text(
-                "Continuar",
-                style: TextStyle(fontSize: 18.0, color: Colors.white),
+              SizedBox(height: 15),
+              MiBoton(),
+              SizedBox(height: 15),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Dosis',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
               ),
-              icon: Icon(Icons.next_week_rounded),
-            )
-          ]),
+              SizedBox(height: 15),
+              TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Cantidad',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+              SizedBox(height: 90),
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  primary: AppColors.BACKGROUND,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
+                ),
+                onPressed: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => Addreminder())),
+                },
+                label: Text(
+                  "Continuar",
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+                icon: Icon(Icons.next_week_rounded),
+              )
+            ]),
+          ),
         ));
   }
 }
