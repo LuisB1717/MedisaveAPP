@@ -96,6 +96,9 @@ class LoggedInWidget extends StatelessWidget {
               icon: Icon(Icons.logout),
               style: ElevatedButton.styleFrom(
                 primary: AppColors.BACKGROUND,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15.3),
               ),
               onPressed: () {
                 final provider =

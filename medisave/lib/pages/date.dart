@@ -38,11 +38,14 @@ class ButtonWidget extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           minimumSize: Size.fromHeight(40),
           primary: Colors.white,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         ),
         child: FittedBox(
           child: Text(
             text,
-            style: TextStyle(fontSize: 20, color: Colors.black),
+            style: TextStyle(
+                fontFamily: 'RobotoMono', fontSize: 18, color: Colors.black54),
           ),
         ),
         onPressed: onClicked,
@@ -66,9 +69,9 @@ class HeaderWidget extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+              fontSize: 15,
+              fontFamily: 'RobotoMono',
             ),
           ),
           const SizedBox(height: 8),

@@ -23,22 +23,23 @@ class Addreminder extends StatelessWidget {
                           if (value.isEmpty) {
                             return "Llene este campo";
                           }*/
-              SizedBox(height: 15),
+              SizedBox(height: 30),
               TipoRecordatorio(),
               SizedBox(height: 15),
               TextFormField(
-                style: TextStyle(fontSize: 15, color: AppColors.BACKGROUND),
                 decoration: InputDecoration(
                   labelText:
                       'Intervalo de Horas para la Administración de Medicamentos',
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
                 ),
               ),
               SizedBox(height: 15),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: '¿Cuántos días?',
-                  border: OutlineInputBorder(),
+                  labelText: '¿Cuántos días va a durar la alarma?',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
                 ),
               ),
               SizedBox(height: 15),
@@ -47,20 +48,19 @@ class Addreminder extends StatelessWidget {
               TimePickerWidget(),
               SizedBox(height: 80),
               ElevatedButton.icon(
-                  icon: Icon(
-                    Icons.arrow_right_rounded,
-                    color: AppColors.BACKGROUND,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 30, vertical: 15)),
-                  onPressed: () {},
-                  label: Text(
-                    "Continuar",
-                    style:
-                        TextStyle(fontSize: 18.0, color: AppColors.BACKGROUND),
-                  ))
+                style: ElevatedButton.styleFrom(
+                  primary: AppColors.BACKGROUND,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
+                ),
+                onPressed: () => {},
+                label: Text(
+                  "Continuar",
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+                icon: Icon(Icons.next_week_rounded),
+              )
             ]),
           ),
         ));
