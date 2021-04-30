@@ -23,6 +23,7 @@ class AlarmaConfig extends StatelessWidget {
               SizedBox(height: 20),
               TimePickerWidget(),
               SizedBox(height: 90),
+              SizedBox(height: 90),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.BACKGROUND,

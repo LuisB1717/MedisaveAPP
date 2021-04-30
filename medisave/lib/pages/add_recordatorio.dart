@@ -47,6 +47,7 @@ class Addreminder extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 80),
+              SizedBox(height: 70),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.BACKGROUND,

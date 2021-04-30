@@ -34,6 +34,7 @@ class Addmedicine extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20))),
               ),
               SizedBox(height: 90),
+              SizedBox(height: 50),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.BACKGROUND,
