@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
+import 'package:medisave/pages/alarma_config.dart';
 import 'package:medisave/pages/tipo_recordatorio.dart';
 import 'package:medisave/widgets/date_picker.dart';
 import 'package:medisave/widgets/time_picker.dart';
@@ -29,7 +30,7 @@ class Addreminder extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   labelText:
-                      'Intervalo de Horas para la Administración de Medicamentos',
+                      'Cada cuantas horas',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
@@ -54,7 +55,12 @@ class Addreminder extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
                 ),
-                onPressed: () => {},
+                onPressed: () => {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => AlarmaConfig())),
+                },
                 label: Text(
                   "Continuar",
                   style: TextStyle(fontSize: 18.0, color: Colors.white),

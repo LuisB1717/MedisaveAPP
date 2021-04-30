@@ -12,7 +12,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
 
   String getText() {
     if (date == null) {
-      return 'Seleccione Fecha ';
+      return 'Fecha ';
     } else {
       return DateFormat('dd/MM/yyyy').format(date);
       // return '${date.month}/${date.day}/${date.year}';
@@ -21,7 +21,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
 
   @override
   Widget build(BuildContext context) => ButtonHeaderWidget(
-        title: 'Fecha de Inicio',
+        title: 'Primera toma',
         text: getText(),
         onClicked: () => pickDate(context),
       );
