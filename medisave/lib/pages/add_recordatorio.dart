@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
-import 'package:medisave/pages/alarma_config.dart';
-import 'package:medisave/pages/tipo_recordatorio.dart';
+import 'package:medisave/pages/programar_dh.dart';
+import 'package:medisave/pages/intervalo_horas.dart';
 import 'package:medisave/widgets/date_picker.dart';
 import 'package:medisave/widgets/time_picker.dart';
 
@@ -25,28 +25,27 @@ class Addreminder extends StatelessWidget {
                             return "Llene este campo";
                           }*/
               SizedBox(height: 30),
-              TipoRecordatorio(),
+              IntervaloHoras(),
               SizedBox(height: 15),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText:
-                      'Cada cuantas horas',
+                  labelText: 'Duración',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
               ),
+              // SizedBox(height: 15),
+              // TimePickerWidget(),
+              // SizedBox(height: 15),
+              // DatePickerWidget(),
               SizedBox(height: 15),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: '¿Cuántos días va a durar la alarma?',
+                  labelText: 'Mensaje',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
               ),
-              SizedBox(height: 15),
-              DatePickerWidget(),
-              SizedBox(height: 15),
-              TimePickerWidget(),
               SizedBox(height: 80),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(

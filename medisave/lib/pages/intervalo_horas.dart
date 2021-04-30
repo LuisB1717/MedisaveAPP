@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class TipoRecordatorio extends StatefulWidget {
-  TipoRecordatorio({Key key}) : super(key: key);
+class IntervaloHoras extends StatefulWidget {
+  IntervaloHoras({Key key}) : super(key: key);
 
   @override
-  _TipoRecordatorioState createState() => _TipoRecordatorioState();
+  _IntervaloHoras createState() => _IntervaloHoras();
 }
 
-String value;
-List tiporecordatorio = ['tipo1', 'tipo2'];
+int value;
+List intervalo = [4, 6, 8, 12, 20, 24];
 
-class _TipoRecordatorioState extends State<TipoRecordatorio> {
+class _IntervaloHoras extends State<IntervaloHoras> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +21,7 @@ class _TipoRecordatorioState extends State<TipoRecordatorio> {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
         child: DropdownButton(
-            hint: Text("Tipo de Alarma"),
+            hint: Text("Frecuencia de la toma"),
             icon: Icon(Icons.arrow_drop_down),
             iconSize: 36,
             isExpanded: true,
@@ -36,9 +36,9 @@ class _TipoRecordatorioState extends State<TipoRecordatorio> {
                 value = newValue;
               });
             },
-            items: tiporecordatorio
+            items: intervalo
                 .map((e) => DropdownMenuItem(
-                      child: Text(e),
+                      child: Text('Cada $e horas'),
                       value: e,
                     ))
                 .toList()),

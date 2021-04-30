@@ -10,15 +10,16 @@ class Addmedicine extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('Medicamento'), backgroundColor: AppColors.BACKGROUND),
+            title: Text('Añadir Medicamento'),
+            backgroundColor: AppColors.BACKGROUND),
         body: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
             child: Column(children: [
               SizedBox(height: 30),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Título',
+                  labelText: 'Nombre del medicamento',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20)),
                 ),
@@ -28,15 +29,7 @@ class Addmedicine extends StatelessWidget {
               SizedBox(height: 15),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Dosis',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              ),
-              SizedBox(height: 15),
-              TextFormField(
-                decoration: InputDecoration(
-                    labelText: 'Cantidad',
+                    labelText: 'Cantidad por toma',
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20))),
               ),
@@ -55,7 +48,7 @@ class Addmedicine extends StatelessWidget {
                           builder: (BuildContext context) => Addreminder())),
                 },
                 label: Text(
-                  "Continuar",
+                  "Siguiente",
                   style: TextStyle(fontSize: 18.0, color: Colors.white),
                 ),
                 icon: Icon(Icons.next_week_rounded),

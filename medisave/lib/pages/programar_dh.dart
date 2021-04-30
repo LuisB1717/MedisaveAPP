@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/pages/add_recordatorio.dart';
 import 'package:medisave/pages/homepage.dart';
+import 'package:medisave/widgets/date_picker.dart';
+import 'package:medisave/widgets/time_picker.dart';
 import 'button_tipo.dart';
 
 class AlarmaConfig extends StatelessWidget {
@@ -11,24 +13,16 @@ class AlarmaConfig extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text('Alarma'), backgroundColor: AppColors.BACKGROUND),
+            title: Text('Programar días y hora'),
+            backgroundColor: AppColors.BACKGROUND),
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
             child: Column(children: [
-      
-              SizedBox(height: 15),
-              MiBoton(),
-              
-              SizedBox(height: 15),
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Mensaje',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              ),
-              SizedBox(height: 30),
+              DatePickerWidget(),
+              SizedBox(height: 20),
+              TimePickerWidget(),
+              SizedBox(height: 90),
               ElevatedButton.icon(
                 style: ElevatedButton.styleFrom(
                   primary: AppColors.BACKGROUND,

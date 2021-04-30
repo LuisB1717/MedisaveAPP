@@ -12,7 +12,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
 
   String getText() {
     if (time == null) {
-      return 'Hora de la toma';
+      return 'Hora de la primera toma';
     } else {
       final hours = time.hour.toString().padLeft(2, '0');
       final minutes = time.minute.toString().padLeft(2, '0');
@@ -23,7 +23,7 @@ class _TimePickerWidgetState extends State<TimePickerWidget> {
 
   @override
   Widget build(BuildContext context) => ButtonHeaderWidget(
-        title: 'Hora',
+        title: '',
         text: getText(),
         onClicked: () => pickTime(context),
       );
