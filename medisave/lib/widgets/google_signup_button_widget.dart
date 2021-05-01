@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medisave/Services/auth_2.dart';
@@ -19,10 +21,19 @@ class GoogleSignupButtonWidget extends StatelessWidget {
           borderSide: BorderSide(color: Colors.black),
           textColor: Colors.black,
           icon: FaIcon(FontAwesomeIcons.google, color: AppColors.BACKGROUND),
-          onPressed: () {
+          onPressed: () async {
             final provider =
                 Provider.of<GoogleSignInProvider>(context, listen: false);
-            provider.login();
+
+            await provider.login();
+            final user = FirebaseAuth.instance.currentUser;
+            print(user.displayName);
+            FirebaseFirestore.instance.collection('Usuarios').add({
+              'id': user.uid,
+              'nombrec': user.displayName,
+              'correo': user.email,
+              'foto': user.photoURL
+            });
           },
         ),
       );

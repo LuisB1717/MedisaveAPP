@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medisave/helpers/appcolor.dart';
 
 class SplashPage extends StatelessWidget {
   static Route route() {

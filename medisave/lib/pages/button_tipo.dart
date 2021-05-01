@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medisave/helpers/appcolor.dart';
 
 class MiBoton extends StatefulWidget {
   MiBoton({Key key}) : super(key: key);

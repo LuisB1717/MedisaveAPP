@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
-import 'package:medisave/widgets/background_painter.dart';
 import 'package:medisave/widgets/google_signup_button_widget.dart';
 
 class SignUpWidget extends StatelessWidget {
