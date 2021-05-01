@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medisave/helpers/appcolor.dart';
 
 class ButtonHeaderWidget extends StatelessWidget {
   final String title;
@@ -45,7 +44,7 @@ class ButtonWidget extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-                fontFamily: 'RobotoMono', fontSize: 18, color: Colors.black54),
+                fontFamily: 'Roboto', fontSize: 18, color: Colors.black54),
           ),
         ),
         onPressed: onClicked,
@@ -71,7 +70,7 @@ class HeaderWidget extends StatelessWidget {
             style: TextStyle(
               color: Colors.black87,
               fontSize: 15,
-              fontFamily: 'RobotoMono',
+              fontFamily: 'Roboto',
             ),
           ),
           const SizedBox(height: 8),
