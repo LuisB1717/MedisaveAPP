@@ -32,6 +32,7 @@ class LoggedInWidget extends StatelessWidget {
                       margin: EdgeInsets.only(
                         top: 50,
                         bottom: 8,
+
                       ),
                       child: CircleAvatar(
                         maxRadius: 25,

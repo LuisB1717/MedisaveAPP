@@ -27,13 +27,19 @@ class GoogleSignupButtonWidget extends StatelessWidget {
 
             await provider.login();
             final user = FirebaseAuth.instance.currentUser;
-            print(user.displayName);
-            FirebaseFirestore.instance.collection('Usuarios').add({
-              'id': user.uid,
-              'nombrec': user.displayName,
-              'correo': user.email,
-              'foto': user.photoURL
-            });
+            final userfound = await FirebaseFirestore.instance
+                .collection('Usuarios')
+                .where("id", isEqualTo: user.uid)
+                .limit(1)
+                .get();
+            if (userfound.size == 0) {
+              FirebaseFirestore.instance.collection('Usuarios').add({
+                'id': user.uid,
+                'nombrec': user.displayName,
+                'correo': user.email,
+                'foto': user.photoURL
+              });
+            }
           },
         ),
       );
