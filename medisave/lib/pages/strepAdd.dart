@@ -100,10 +100,23 @@ class _AddalarmaState extends State<Addalarma> {
                     initialDate: DateTime.now(),
                     firstDate: DateTime(1900),
                     lastDate: DateTime(2100));
-                fecha.text = date.toString().substring(0, 10);
+                fecha.text = date.toString();
               },
             ),
             SizedBox(height: 20),
+            TextFormField(
+              readOnly: true,
+              controller: hora,
+              decoration:
+                  InputDecoration(hintText: 'Seleccione Hora de Inicio'),
+              onTap: () async {
+                var time = await showTimePicker(
+                  initialTime: TimeOfDay.now(),
+                  context: context,
+                );
+                hora.text = time.format(context);
+              },
+            ),
           ],
         ),
       ),
