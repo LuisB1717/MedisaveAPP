@@ -88,8 +88,10 @@ class _AddalarmaState extends State<Addalarma> {
         title: Text('Agregar Alarma'),
       ),
       body: SizedBox(
-        child: Container(
-            child: Stepper(
+        child: Form(
+          child: Column(
+            children: <Widget>[
+              new Stepper(
                 currentStep: this.current_step,
                 steps: steps,
                 type: StepperType.vertical,
@@ -158,10 +160,29 @@ class _AddalarmaState extends State<Addalarma> {
                           ),
                           icon: Icon(Icons.cancel_outlined),
                         ),
-                      ))
+                      )),
                     ],
                   );
-                })),
+                },
+              ),
+              SizedBox(height: 8),
+              ElevatedButton.icon(
+                style: ElevatedButton.styleFrom(
+                  primary: AppColors.BACKGROUND,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
+                ),
+                onPressed: () => {},
+                label: Text(
+                  "Guardar",
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                ),
+                icon: Icon(Icons.save),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
