@@ -7,18 +7,26 @@ class Alarma {
   int _duracion;
   String _mensaje;
   DateTime _fecha;
+  DateTime _hora;
 
   Alarma(this._id, this._nombreA, this._tipo, this._cantidad, this._frecuencia,
-      this._duracion, this._mensaje, this._fecha);
+      this._duracion, this._mensaje, this._fecha, this._hora);
 
   factory Alarma.fromJson(Map<String, dynamic> json) {
-    return Alarma(json['id'], json['nombre'], json['tipo'], json['cantidad'],
-        json['frecuencia'], json['duracion'], json['mensaje'], json['fecha']);
+    return Alarma(
+        json['id'],
+        json['nombre'],
+        json['tipo'],
+        json['cantidad'],
+        json['frecuencia'],
+        json['duracion'],
+        json['mensaje'],
+        json['fecha'],
+        json['hora']);
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'id': _id,
       'nombre': _nombreA,
       'tipo': _tipo,
       'cantidad': _cantidad,
@@ -26,6 +34,7 @@ class Alarma {
       'duracion': _duracion,
       'mensaje': _mensaje,
       'fecha': _fecha,
+      'hora': _hora,
     };
   }
 

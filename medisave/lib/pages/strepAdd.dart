@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
+import 'package:medisave/models/services_firestore.dart';
 import 'package:medisave/pages/button_tipo.dart';
-import 'package:medisave/pages/programar_dh.dart';
 import 'package:medisave/widgets/date_picker.dart';
 import 'package:medisave/widgets/time_picker.dart';
-
 import 'intervalo_horas.dart';
+import 'package:medisave/models/alarma.dart';
 
 class Addalarma extends StatefulWidget {
   Addalarma({Key key}) : super(key: key);
@@ -15,74 +15,99 @@ class Addalarma extends StatefulWidget {
 }
 
 class _AddalarmaState extends State<Addalarma> {
-  int current_step = 0;
+  final nombrem = TextEditingController();
+  final cantidad = TextEditingController();
+  final duracion = TextEditingController();
+  final mensaje = TextEditingController();
+  final fecha = TextEditingController();
+  final hora = TextEditingController();
 
-  List<Step> steps = [
-    Step(
-        isActive: true,
-        title: Text('Medicamento'),
-        content: Column(
-          children: [
-            SizedBox(height: 10),
-            TextFormField(
-                decoration: InputDecoration(
-              labelText: 'Nombre del medicamento',
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-            )),
-            SizedBox(height: 20),
-            MiBoton(),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'Cantidad por toma',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20))),
-            ),
-          ],
-        )),
-    Step(
-        isActive: true,
-        title: Text('Recordatorio'),
-        content: Column(
-          children: [
-            SizedBox(height: 10),
-            IntervaloHoras(),
-            SizedBox(height: 20),
-            TextFormField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Duración',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-              ),
-            ),
-            SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Mensaje',
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-              ),
-            ),
-          ],
-        )),
-    Step(
-      isActive: true,
-      title: Text('Programar'),
-      content: Column(
-        children: [
-          SizedBox(height: 10),
-          DatePickerWidget(),
-          SizedBox(height: 20),
-          TimePickerWidget(),
-        ],
-      ),
-    ),
-  ];
+  int current_step = 0;
+  void dispose() {
+    nombrem.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<Step> steps = [
+      Step(
+          isActive: true,
+          title: Text('Medicamento'),
+          content: Column(
+            children: [
+              SizedBox(height: 10),
+              TextFormField(
+                  controller: nombrem,
+                  decoration: InputDecoration(
+                    labelText: 'Nombre del medicamento',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                  )),
+              SizedBox(height: 20),
+              MiBoton(),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: cantidad,
+                decoration: InputDecoration(
+                    labelText: 'Cantidad por toma',
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20))),
+              ),
+            ],
+          )),
+      Step(
+          isActive: true,
+          title: Text('Recordatorio'),
+          content: Column(
+            children: [
+              SizedBox(height: 10),
+              IntervaloHoras(),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: duracion,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Duración',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
+              ),
+              SizedBox(height: 20),
+              TextFormField(
+                controller: mensaje,
+                decoration: InputDecoration(
+                  labelText: 'Mensaje',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                ),
+              ),
+            ],
+          )),
+      Step(
+        isActive: true,
+        title: Text('Programar'),
+        content: Column(
+          children: [
+            SizedBox(height: 10),
+            TextFormField(
+              readOnly: true,
+              controller: fecha,
+              decoration: InputDecoration(hintText: 'Seleccionar Fecha'),
+              onTap: () async {
+                var date = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100));
+                fecha.text = date.toString().substring(0, 10);
+              },
+            ),
+            SizedBox(height: 20),
+          ],
+        ),
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Text('Agregar Alarma'),
@@ -104,6 +129,24 @@ class _AddalarmaState extends State<Addalarma> {
                   setState(() {
                     if (current_step < steps.length - 1) {
                       current_step = current_step + 1;
+                      if (current_step == 2) {
+                        ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.BACKGROUND,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 40, vertical: 12.3),
+                          ),
+                          onPressed: () => {},
+                          label: Text(
+                            "Guardar",
+                            style:
+                                TextStyle(fontSize: 18.0, color: Colors.white),
+                          ),
+                          icon: Icon(Icons.save),
+                        );
+                      }
                     } else {
                       current_step = 0;
                     }
@@ -171,12 +214,24 @@ class _AddalarmaState extends State<Addalarma> {
                   primary: AppColors.BACKGROUND,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  padding: EdgeInsets.symmetric(horizontal: 40, vertical: 12.3),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 ),
-                onPressed: () => {},
+                onPressed: () async {
+                  final newAlarma = await FirestoreService.setAlarma(Alarma(
+                      'id',
+                      nombrem.text,
+                      'tipo',
+                      1,
+                      1,
+                      3,
+                      'mensaje',
+                      DateTime.now(),
+                      DateTime.now()));
+                  print(newAlarma);
+                },
                 label: Text(
                   "Guardar",
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                  style: TextStyle(fontSize: 17.0, color: Colors.white),
                 ),
                 icon: Icon(Icons.save),
               ),

@@ -1,24 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:medisave/models/alarma.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
-  FirebaseFirestore _db = FirebaseFirestore.instance;
+  static CollectionReference _db = FirebaseFirestore.instance
+      .collection('Usuarios')
+      .doc(FirebaseAuth.instance.currentUser.uid)
+      .collection('Alarmas');
 
-  Stream<List<Alarma>> getAlarmas() {
-    return _db.collection('Alarmas').snapshots().map((snapshot) =>
+  static Stream<List<Alarma>> getAlarmas() {
+    return _db.snapshots().map((snapshot) =>
         snapshot.docs.map((doc) => Alarma.fromJson(doc.data())).toList());
   }
 
   //Upsert
-  Future<void> setAlarma(Alarma alarma) {
+  static Future<DocumentReference> setAlarma(Alarma alarma) {
     var options = SetOptions(merge: true);
 
-    return _db
-        .collection('Alarmas').add(alarma.toMap());
+    return _db.add(alarma.toMap());
   }
 
   //Delete
-  Future<void> removeAlarma(String id) {
-    return _db.collection('Alarmas').doc(id).delete();
+  static Future<void> removeAlarma(String id) {
+    return _db.doc(id).delete();
   }
 }
