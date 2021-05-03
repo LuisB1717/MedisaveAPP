@@ -68,6 +68,7 @@ class _AddalarmaState extends State<Addalarma> {
           ],
         )),
     Step(
+      isActive: true,
       title: Text('Programar'),
       content: Column(
         children: [
@@ -77,8 +78,7 @@ class _AddalarmaState extends State<Addalarma> {
           TimePickerWidget(),
         ],
       ),
-      isActive: true,
-    )
+    ),
   ];
 
   @override
@@ -87,34 +87,81 @@ class _AddalarmaState extends State<Addalarma> {
       appBar: AppBar(
         title: Text('Agregar Alarma'),
       ),
-      body: Container(
-        child: Stepper(
-            currentStep: this.current_step,
-            steps: steps,
-            type: StepperType.vertical,
-            onStepTapped: (step) {
-              setState(() {
-                current_step = step;
-              });
-            },
-            onStepContinue: () {
-              setState(() {
-                if (current_step < steps.length - 1) {
-                  current_step = current_step + 1;
-                } else {
-                  current_step = 0;
-                }
-              });
-            },
-            onStepCancel: () {
-              setState(() {
-                if (current_step > 0) {
-                  current_step = current_step - 1;
-                } else {
-                  current_step = 0;
-                }
-              });
-            }),
+      body: SizedBox(
+        child: Container(
+            child: Stepper(
+                currentStep: this.current_step,
+                steps: steps,
+                type: StepperType.vertical,
+                onStepTapped: (step) {
+                  setState(() {
+                    current_step = step;
+                  });
+                },
+                onStepContinue: () {
+                  setState(() {
+                    if (current_step < steps.length - 1) {
+                      current_step = current_step + 1;
+                    } else {
+                      current_step = 0;
+                    }
+                  });
+                },
+                onStepCancel: () {
+                  setState(() {
+                    if (current_step > 0) {
+                      current_step = current_step - 1;
+                    } else {
+                      current_step = 0;
+                    }
+                  });
+                },
+                controlsBuilder: (BuildContext context,
+                    {VoidCallback onStepContinue, VoidCallback onStepCancel}) {
+                  return Row(
+                    children: <Widget>[
+                      SizedBox(height: 80.0),
+                      Container(
+                          child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                        child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.BACKGROUND,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          onPressed: onStepContinue,
+                          label: Text(
+                            "Continuar",
+                            style:
+                                TextStyle(fontSize: 16.0, color: Colors.white),
+                          ),
+                          icon: Icon(Icons.navigate_next),
+                        ),
+                      )),
+                      Container(
+                          child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                        child: ElevatedButton.icon(
+                          style: ElevatedButton.styleFrom(
+                            primary: AppColors.BACKGROUND,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15)),
+                          ),
+                          onPressed: onStepCancel,
+                          label: Text(
+                            "Cancelar",
+                            style:
+                                TextStyle(fontSize: 16.0, color: Colors.white),
+                          ),
+                          icon: Icon(Icons.cancel_outlined),
+                        ),
+                      ))
+                    ],
+                  );
+                })),
       ),
     );
   }
