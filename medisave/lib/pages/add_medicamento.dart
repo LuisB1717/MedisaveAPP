@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:medisave/helpers/appcolor.dart';
-import 'package:medisave/pages/add_recordatorio.dart';
+import 'add_recordatorio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:medisave/models/services_firestore.dart';
 import 'button_tipo.dart';
 
-class Addmedicine extends StatelessWidget {
+class Addmedicine extends StatefulWidget {
+  Addmedicine({Key key}) : super(key: key);
+  @override
+  _AddmedicineState createState() => _AddmedicineState();
+}
+
+class _AddmedicineState extends State<Addmedicine> {
   final _keyform = GlobalKey<FormState>();
+  final nombrem = TextEditingController();
+
+  void dispose() {
+    nombrem.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +34,7 @@ class Addmedicine extends StatelessWidget {
               child: Column(children: [
                 SizedBox(height: 30),
                 TextFormField(
+                  controller: nombrem,
                   validator: (valor) {
                     if (valor.isEmpty) {
                       return 'Nombre del medicamento vacio';
@@ -44,9 +59,6 @@ class Addmedicine extends StatelessWidget {
                     if (valor.isEmpty) {
                       return 'Ingrese cantidad por toma';
                     }
-                    if (valor == "") {
-                      return 'Cantidad no valida';
-                    }
                     return null;
                   },
                   decoration: InputDecoration(
@@ -67,12 +79,14 @@ class Addmedicine extends StatelessWidget {
                   onPressed: () => {
                     if (_keyform.currentState.validate())
                       {
-                        print("Validación Exitosa"),
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     Addreminder())),
+
+                        // FirestoreService.setAlarma(Alarma('sadas','sda','asdas',2,2,3,'das',DateTime()))
+                        // print(nombrem.text),
                       }
                     else
                       {
@@ -91,21 +105,3 @@ class Addmedicine extends StatelessWidget {
         ));
   }
 }
-
-// ElevatedButton(
-//     onPressed: () {},
-//     style: ElevatedButton.styleFrom(
-//       primary: AppColors.BACKGROUND,
-//     ),
-//     child: Text(
-//       "Continuar",
-//       style: TextStyle(fontSize: 18.0, color: Colors.white),
-//     )),
-// SizedBox(height: 15),
-//  /*onSaved: (value) {
-//   nameValue=value;
-// },
-// validator: (value) {
-//   if (value.isEmpty) {
-//     return "Llene este campo";
-//   }*/
