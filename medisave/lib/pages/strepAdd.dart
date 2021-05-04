@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/models/services_firestore.dart';
 import 'package:medisave/pages/button_tipo.dart';
-import 'package:medisave/widgets/date_picker.dart';
 import 'intervalo_horas.dart';
 import 'package:medisave/models/alarma.dart';
 
@@ -20,7 +19,7 @@ class _AddalarmaState extends State<Addalarma> {
   final mensaje = TextEditingController();
   final fecha = TextEditingController();
   final hora = TextEditingController();
-
+  TimeOfDay rawHora;
   int current_step = 0;
   void dispose() {
     nombrem.dispose();
@@ -109,14 +108,16 @@ class _AddalarmaState extends State<Addalarma> {
               decoration:
                   InputDecoration(hintText: 'Seleccione Hora de Inicio'),
               onTap: () async {
-               var time = await showTimePicker(
+                var time = await showTimePicker(
                   initialTime: TimeOfDay.now(),
                   context: context,
                 );
                 if (time == null) {
                   return;
-                } else
+                } else {
                   hora.text = time.format(context);
+                  rawHora = time;
+                }
               },
             ),
           ],
@@ -232,19 +233,19 @@ class _AddalarmaState extends State<Addalarma> {
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 ),
                 onPressed: () async {
+                  final now = DateTime.now();
                   final newAlarma = await FirestoreService.setAlarma(Alarma(
-                      'id',
-                      nombrem.text,
-                      'tipo',
-                      int.parse(cantidad.text), 
-                      2,
-                      int.parse(duracion.text),
-                      mensaje.text,
-                     DateTime.parse(fecha.text),
-                     DateTime.parse(hora.text),
-                     
+                    'id',
+                    nombrem.text,
+                    'tipo',
+                    int.parse(cantidad.text),
+                    2,
+                    int.parse(duracion.text),
+                    mensaje.text,
+                    DateTime.parse(fecha.text),
+                    DateTime(now.year, now.month, now.day, rawHora.hour,
+                        rawHora.minute),
                   ));
-                  
                 },
                 label: Text(
                   "Guardar",

@@ -49,4 +49,5 @@ class Alarma {
   int get duracion => _duracion;
   String get mensaje => _mensaje;
   DateTime get fecha => _fecha;
+  DateTime get hora => _hora;
 }

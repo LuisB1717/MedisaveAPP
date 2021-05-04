@@ -64,11 +64,10 @@ class Contenido extends StatelessWidget {
         child: Icon(Icons.add),
         backgroundColor: Color(0xff158dad),
         onPressed: () {
-          //print("CIEGO");
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (BuildContext context) =>Addalarma()));
+                  builder: (BuildContext context) => Addalarma()));
         },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30))),
