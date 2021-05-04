@@ -3,7 +3,6 @@ import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/models/services_firestore.dart';
 import 'package:medisave/pages/button_tipo.dart';
 import 'package:medisave/widgets/date_picker.dart';
-import 'package:medisave/widgets/time_picker.dart';
 import 'intervalo_horas.dart';
 import 'package:medisave/models/alarma.dart';
 
@@ -110,11 +109,14 @@ class _AddalarmaState extends State<Addalarma> {
               decoration:
                   InputDecoration(hintText: 'Seleccione Hora de Inicio'),
               onTap: () async {
-                var time = await showTimePicker(
+               var time = await showTimePicker(
                   initialTime: TimeOfDay.now(),
                   context: context,
                 );
-                hora.text = time.format(context);
+                if (time == null) {
+                  return;
+                } else
+                  hora.text = time.format(context);
               },
             ),
           ],
@@ -234,13 +236,15 @@ class _AddalarmaState extends State<Addalarma> {
                       'id',
                       nombrem.text,
                       'tipo',
-                      1,
-                      1,
-                      3,
-                      'mensaje',
-                      DateTime.now(),
-                      DateTime.now()));
-                  print(newAlarma);
+                      int.parse(cantidad.text), 
+                      2,
+                      int.parse(duracion.text),
+                      mensaje.text,
+                     DateTime.parse(fecha.text),
+                     DateTime.parse(hora.text),
+                     
+                  ));
+                  
                 },
                 label: Text(
                   "Guardar",

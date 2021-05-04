@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 class Alarma {
   String _id;
   String _nombreA;
@@ -33,8 +36,8 @@ class Alarma {
       'frecuencia': _frecuencia,
       'duracion': _duracion,
       'mensaje': _mensaje,
-      'fecha': _fecha,
-      'hora': _hora,
+      'fecha': Timestamp.fromDate(_fecha),
+      'hora': Timestamp.fromDate(_hora),
     };
   }
 
