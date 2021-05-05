@@ -4,6 +4,7 @@ import 'package:medisave/models/services_firestore.dart';
 import 'package:medisave/pages/button_tipo.dart';
 import 'intervalo_horas.dart';
 import 'package:medisave/models/alarma.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 class Addalarma extends StatefulWidget {
   Addalarma({Key key}) : super(key: key);
@@ -14,12 +15,18 @@ class Addalarma extends StatefulWidget {
 
 class _AddalarmaState extends State<Addalarma> {
   final nombrem = TextEditingController();
+
+  final tipo = TextEditingController();
   final cantidad = TextEditingController();
   final duracion = TextEditingController();
   final mensaje = TextEditingController();
   final fecha = TextEditingController();
   final hora = TextEditingController();
+  DropdownSearch tipoc;
   TimeOfDay rawHora;
+  String medicamentoSeleccionado;
+  String intervalo;
+  List tipomedicamento = ["Pastilla", "Inyección", "Jarabe", "Gotas", "Otro"];
   int current_step = 0;
   void dispose() {
     nombrem.dispose();
@@ -42,8 +49,66 @@ class _AddalarmaState extends State<Addalarma> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
                   )),
+              //slae error al iniciar dameun toque,
               SizedBox(height: 20),
-              MiBoton(),
+              DropdownSearch<String>(
+                searchBoxController: tipo,
+                validator: (value) => medicamentoSeleccionado,
+                mode: Mode.MENU,
+                showSelectedItem: true,
+                label: "Tipo Medicamento",
+                items: [
+                  "Pastilla",
+                  "Inyección",
+                  "Jarabe",
+                  "Gotas",
+                  "Otro"
+                ], // acepta eso y no la lista de arriba  oe ya imprime xdddd buenaaaaaaaaaaaaaaaa ya ahora hay que cambiar el nombre, para que se entienda
+
+                selectedItem: "Pastilla",
+                //   hint: "country in menu mode",
+                //popupItemDisabled: (String s) => s.startsWith('I'),
+                onChanged: (newValue) {
+                  setState(() {
+                    medicamentoSeleccionado = newValue;
+                  });
+                },
+              ), // oe pero sale error abajo mano,
+
+              /*  Container(pero q va impirmi p sino hay la lista 
+                decoration: BoxDecoration( y el controller? 
+                  border: Border.all(color: Colors.grey), yata asi queda?,
+                  borderRadius: BorderRadius.circular(20),como esatba antes p
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
+                  child: DropdownButton(
+                    
+                      hint: Text("Tipo"),
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 36,
+                      isExpanded: true,
+                      style: TextStyle(
+                        color: Colors.black87,
+                        fontSize: 15.4,
+                      ),
+                      underline: SizedBox(),
+                      value: medicamentoSeleccionado,
+                      onChanged: (newValue) {
+                        setState(() {
+                          medicamentoSeleccionado = newValue;
+                          
+                        });
+                      },
+                      items: tipomedicamento
+                          .map((e) => DropdownMenuItem(
+                                child: Text(e),
+                                value: e,
+                              ))
+                          .toList()),
+                ),
+              ),*/
+              // MiBoton(),
               SizedBox(height: 20),
               TextFormField(
                 controller: cantidad,
@@ -60,7 +125,25 @@ class _AddalarmaState extends State<Addalarma> {
           content: Column(
             children: [
               SizedBox(height: 10),
-              IntervaloHoras(),
+              DropdownSearch<String>(
+                searchBoxController: tipo,
+                validator: (value) => intervalo,
+                mode: Mode.MENU,
+                showSelectedItem: true,
+                label: "Frecuencia de la toma en horas",
+                items: ["4", "6", "8", "12", "20", "24"],
+
+                selectedItem: "4",
+                //   hint: "country in menu mode",
+                //popupItemDisabled: (String s) => s.startsWith('I'),
+                onChanged: (newValue) {
+                  setState(() {
+                    intervalo = newValue;
+                  });
+                },
+              ),
+
+              //IntervaloHoras(),
               SizedBox(height: 20),
               TextFormField(
                 controller: duracion,
@@ -129,7 +212,7 @@ class _AddalarmaState extends State<Addalarma> {
         title: Text('Agregar Alarma'),
       ),
       body: SizedBox(
-        child: Form(
+        child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
               new Stepper(
@@ -237,15 +320,20 @@ class _AddalarmaState extends State<Addalarma> {
                   final newAlarma = await FirestoreService.setAlarma(Alarma(
                     'id',
                     nombrem.text,
-                    'tipo',
+                    medicamentoSeleccionado,
                     int.parse(cantidad.text),
-                    2,
+                    int.parse(intervalo),
                     int.parse(duracion.text),
                     mensaje.text,
                     DateTime.parse(fecha.text),
                     DateTime(now.year, now.month, now.day, rawHora.hour,
                         rawHora.minute),
                   ));
+
+                  // donde va?  a ver prueba oe pero arriba esta valuechoose ya le cambie el nombre revisa otra vez
+                  //conforme notarioa ver pera
+
+                  // mano a ver prueba con eso queda creo xd pero prueba priemro//corriendo...errrrorrrrrrr donde ah ya, esque es un stirng ps
                 },
                 label: Text(
                   "Guardar",
