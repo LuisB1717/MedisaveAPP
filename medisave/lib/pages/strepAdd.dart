@@ -13,7 +13,6 @@ class Addalarma extends StatefulWidget {
 
 class _AddalarmaState extends State<Addalarma> {
   final nombrem = TextEditingController();
-
   final tipo = TextEditingController();
   final cantidad = TextEditingController();
   final duracion = TextEditingController();
@@ -55,58 +54,14 @@ class _AddalarmaState extends State<Addalarma> {
                 mode: Mode.MENU,
                 showSelectedItem: true,
                 label: "Tipo Medicamento",
-                items: [
-                  "Pastilla",
-                  "Inyección",
-                  "Jarabe",
-                  "Gotas",
-                  "Otro"
-                ], // acepta eso y no la lista de arriba  oe ya imprime xdddd buenaaaaaaaaaaaaaaaa ya ahora hay que cambiar el nombre, para que se entienda
-
+                items: ["Pastilla", "Inyección", "Jarabe", "Gotas", "Otro"],
                 selectedItem: "Pastilla",
-                //   hint: "country in menu mode",
-                //popupItemDisabled: (String s) => s.startsWith('I'),
                 onChanged: (newValue) {
                   setState(() {
                     medicamentoSeleccionado = newValue;
                   });
                 },
-              ), // oe pero sale error abajo mano,
-
-              /*  Container(pero q va impirmi p sino hay la lista 
-                decoration: BoxDecoration( y el controller? 
-                  border: Border.all(color: Colors.grey), yata asi queda?,
-                  borderRadius: BorderRadius.circular(20),como esatba antes p
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2.5),
-                  child: DropdownButton(
-                    
-                      hint: Text("Tipo"),
-                      icon: Icon(Icons.arrow_drop_down),
-                      iconSize: 36,
-                      isExpanded: true,
-                      style: TextStyle(
-                        color: Colors.black87,
-                        fontSize: 15.4,
-                      ),
-                      underline: SizedBox(),
-                      value: medicamentoSeleccionado,
-                      onChanged: (newValue) {
-                        setState(() {
-                          medicamentoSeleccionado = newValue;
-                          
-                        });
-                      },
-                      items: tipomedicamento
-                          .map((e) => DropdownMenuItem(
-                                child: Text(e),
-                                value: e,
-                              ))
-                          .toList()),
-                ),
-              ),*/
-              // MiBoton(),
+              ),
               SizedBox(height: 20),
               TextFormField(
                 controller: cantidad,

@@ -11,13 +11,9 @@ class LoggedInWidget extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser;
 
     return Drawer(
-      //  alignment: Alignment.center,
-      //color: Colors.blueGrey.shade900,
       child: Material(
         color: AppColors.BACKGROUND,
         child: ListView(
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(bottom: 30),
