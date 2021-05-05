@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 class Alarma {
   String _id;
@@ -24,8 +23,10 @@ class Alarma {
         json['frecuencia'],
         json['duracion'],
         json['mensaje'],
-        json['fecha'],
-        json['hora']);
+        DateTime.fromMicrosecondsSinceEpoch(
+            json['fecha'].microsecondsSinceEpoch),
+        DateTime.fromMicrosecondsSinceEpoch(
+            json['hora'].microsecondsSinceEpoch));
   }
 
   Map<String, dynamic> toMap() {

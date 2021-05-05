@@ -24,4 +24,12 @@ class FirestoreService {
   static Future<void> removeAlarma(String id) {
     return _db.doc(id).delete();
   }
+
+  Stream<List<Alarma>> getByfecha(DateTime fechax) {
+    return _db
+        .where('fecha', isEqualTo: Timestamp.fromDate(fechax))
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Alarma.fromJson(doc.data())).toList());
+  }
 }

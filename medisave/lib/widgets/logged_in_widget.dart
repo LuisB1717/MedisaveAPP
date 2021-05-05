@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medisave/Services/auth_2.dart';
 import 'package:medisave/helpers/appcolor.dart';
+import 'package:medisave/pages/record_date.dart';
 import 'package:provider/provider.dart';
 
 class LoggedInWidget extends StatelessWidget {
@@ -32,7 +33,6 @@ class LoggedInWidget extends StatelessWidget {
                       margin: EdgeInsets.only(
                         top: 50,
                         bottom: 8,
-
                       ),
                       child: CircleAvatar(
                         maxRadius: 25,
@@ -69,7 +69,10 @@ class LoggedInWidget extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.fiber_smart_record, color: Colors.white),
               title: Text('Historial', style: TextStyle(color: Colors.white)),
-              onTap: null,
+              onTap: () => (Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Buscarxfecha()))),
             ),
             SizedBox(height: 8),
             ListTile(

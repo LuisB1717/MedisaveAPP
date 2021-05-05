@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/models/services_firestore.dart';
-import 'package:medisave/pages/button_tipo.dart';
-import 'intervalo_horas.dart';
 import 'package:medisave/models/alarma.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 
@@ -132,10 +130,7 @@ class _AddalarmaState extends State<Addalarma> {
                 showSelectedItem: true,
                 label: "Frecuencia de la toma en horas",
                 items: ["4", "6", "8", "12", "20", "24"],
-
                 selectedItem: "4",
-                //   hint: "country in menu mode",
-                //popupItemDisabled: (String s) => s.startsWith('I'),
                 onChanged: (newValue) {
                   setState(() {
                     intervalo = newValue;
@@ -329,7 +324,6 @@ class _AddalarmaState extends State<Addalarma> {
                     DateTime(now.year, now.month, now.day, rawHora.hour,
                         rawHora.minute),
                   ));
-
                   // donde va?  a ver prueba oe pero arriba esta valuechoose ya le cambie el nombre revisa otra vez
                   //conforme notarioa ver pera
 
