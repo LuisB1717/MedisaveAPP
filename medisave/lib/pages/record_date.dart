@@ -41,7 +41,7 @@ class _Buscarxfecha extends State<Buscarxfecha> {
                         firstDate: DateTime(1900),
                         lastDate: DateTime(2100));
                     setState(() {
-                      fechax.text = date.toString();
+                      fechax.text = date.toString().substring(0, 10);
                     });
                   },
                 ),
@@ -71,12 +71,13 @@ class _Buscarxfecha extends State<Buscarxfecha> {
                                         radius: 20,
                                       ),
                                       title: Text(alarmas[index].nombreA),
-                                      subtitle:
-                                          Text(alarmas[index].fecha.toString()),
+                                      subtitle: Text(alarmas[index]
+                                          .fecha
+                                          .toString()
+                                          .substring(0, 10)),
                                     );
                                   },
                                 );
-                                ;
                             }
                           },
                         ),

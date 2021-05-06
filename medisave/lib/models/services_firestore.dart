@@ -8,9 +8,10 @@ class FirestoreService {
       .doc(FirebaseAuth.instance.currentUser.uid)
       .collection('Alarmas');
 
-  static Stream<List<Alarma>> getAlarmas() {
-    return _db.snapshots().map((snapshot) =>
-        snapshot.docs.map((doc) => Alarma.fromJson(doc.data())).toList());
+  Stream<List<Alarma>> getAlarmas() {
+    return _db.snapshots().map((snapshot) => snapshot.docs
+        .map((doc) => Alarma.fromJson(doc.data(), doc.id))
+        .toList());
   }
 
   //Upsert
@@ -21,7 +22,7 @@ class FirestoreService {
   }
 
   //Delete
-  static Future<void> removeAlarma(String id) {
+  Future<void> removeAlarma(String id) {
     return _db.doc(id).delete();
   }
 
@@ -29,7 +30,8 @@ class FirestoreService {
     return _db
         .where('fecha', isEqualTo: Timestamp.fromDate(fechax))
         .snapshots()
-        .map((snapshot) =>
-            snapshot.docs.map((doc) => Alarma.fromJson(doc.data())).toList());
+        .map((snapshot) => snapshot.docs
+            .map((doc) => Alarma.fromJson(doc.data(), doc.id))
+            .toList());
   }
 }

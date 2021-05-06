@@ -14,9 +14,9 @@ class Alarma {
   Alarma(this._id, this._nombreA, this._tipo, this._cantidad, this._frecuencia,
       this._duracion, this._mensaje, this._fecha, this._hora);
 
-  factory Alarma.fromJson(Map<String, dynamic> json) {
+  factory Alarma.fromJson(Map<String, dynamic> json, String id) {
     return Alarma(
-        json['id'],
+        id,
         json['nombre'],
         json['tipo'],
         json['cantidad'],

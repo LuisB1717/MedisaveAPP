@@ -131,7 +131,10 @@ class _AddalarmaState extends State<Addalarma> {
                     initialDate: DateTime.now(),
                     firstDate: DateTime(1900),
                     lastDate: DateTime(2100));
-                fecha.text = date.toString();
+                if (date != null) {
+                  fecha.text = date.toString().substring(0, 10);
+                } else
+                  return;
               },
             ),
             SizedBox(height: 20),
