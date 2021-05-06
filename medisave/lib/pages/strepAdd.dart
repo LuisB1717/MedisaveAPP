@@ -21,8 +21,8 @@ class _AddalarmaState extends State<Addalarma> {
   final hora = TextEditingController();
   DropdownSearch tipoc;
   TimeOfDay rawHora;
-  String medicamentoSeleccionado;
-  String intervalo;
+  String medicamentoSeleccionado = "Pastilla";
+  String intervalo = "4";
   List tipomedicamento = ["Pastilla", "Inyección", "Jarabe", "Gotas", "Otro"];
   int current_step = 0;
   void dispose() {
@@ -124,7 +124,11 @@ class _AddalarmaState extends State<Addalarma> {
             TextFormField(
               readOnly: true,
               controller: fecha,
-              decoration: InputDecoration(hintText: 'Seleccionar Fecha'),
+              decoration: InputDecoration(
+                  icon: Icon(Icons.calendar_today_rounded),
+                  labelText: 'Seleccionar Fecha',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
               onTap: () async {
                 var date = await showDatePicker(
                     context: context,
@@ -141,8 +145,11 @@ class _AddalarmaState extends State<Addalarma> {
             TextFormField(
               readOnly: true,
               controller: hora,
-              decoration:
-                  InputDecoration(hintText: 'Seleccione Hora de Inicio'),
+              decoration: InputDecoration(
+                  icon: Icon(Icons.timer_rounded),
+                  labelText: 'Seleccionar Hora de inicio',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20))),
               onTap: () async {
                 var time = await showTimePicker(
                   initialTime: TimeOfDay.now(),
@@ -280,7 +287,7 @@ class _AddalarmaState extends State<Addalarma> {
                     mensaje.text,
                     DateTime.parse(fecha.text),
                     DateTime(now.year, now.month, now.day, rawHora.hour,
-                        rawHora.minute),
+                      rawHora.minute),
                   ));
                   // donde va?  a ver prueba oe pero arriba esta valuechoose ya le cambie el nombre revisa otra vez
                   //conforme notarioa ver pera
