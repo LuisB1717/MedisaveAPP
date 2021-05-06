@@ -66,7 +66,9 @@ class _Buscarxfecha extends State<Buscarxfecha> {
                                       (BuildContext context, int index) {
                                     return ListTile(
                                       leading: CircleAvatar(
-                                        radius: 25,
+                                        backgroundImage: NetworkImage(
+                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm4U4e_R3gp6jio8mJIHUtVd-ZdJXtxzdabQ&usqp=CAU'),
+                                        radius: 20,
                                       ),
                                       title: Text(alarmas[index].nombreA),
                                       subtitle:
