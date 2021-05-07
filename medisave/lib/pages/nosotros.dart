@@ -62,6 +62,7 @@ class Nosotros extends StatelessWidget {
           text: "Vázquez Cueva Mario",
           textAlign: TextAlign.center,
         ),
+        SizedBox(height: 4),
         Linkify(
           onOpen: (link) => print("Clicked ${link.url}!"),
           text: "Ortega Becerra Gustavo",
