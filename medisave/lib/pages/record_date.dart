@@ -65,37 +65,40 @@ class _Buscarxfecha extends State<Buscarxfecha> {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     Alarma alarma = snapshot.data[index];
-
-                                    return ListTile(
-                                      trailing: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          // Text(alarma.fecha.toString()),
-                                          // Text(alarma.hora.toString()),
-                                          IconButton(
-                                            color: Colors.red,
-                                            icon: Icon(Icons.delete),
-                                            onPressed: () => _deleteAlarma(
-                                                context, alarma.id),
-                                          ),
-                                        ],
+                                    return Card(
+                                      elevation: 3.0,
+                                      child: ListTile(
+                                        trailing: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            // Text(alarma.fecha.toString()),
+                                            // Text(alarma.hora.toString()),
+                                            IconButton(
+                                              color: Colors.red,
+                                              icon: Icon(Icons.delete),
+                                              onPressed: () => _deleteAlarma(
+                                                  context, alarma.id),
+                                            ),
+                                          ],
+                                        ),
+                                        leading: CircleAvatar(
+                                          backgroundImage: NetworkImage(
+                                              'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm4U4e_R3gp6jio8mJIHUtVd-ZdJXtxzdabQ&usqp=CAU'),
+                                          radius: 20,
+                                        ),
+                                        title: Text(alarma.tipo +
+                                            ' : ' +
+                                            alarma.nombreA),
+                                        subtitle: Text("Fecha" +
+                                            ' :' +
+                                            alarma.fecha
+                                                .toString()
+                                                .substring(0, 10) +
+                                            ' | Hora ' +
+                                            alarma.hora.hour.toString() +
+                                            ":" +
+                                            alarma.hora.minute.toString()),
                                       ),
-                                      leading: CircleAvatar(
-                                        backgroundImage: NetworkImage(
-                                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm4U4e_R3gp6jio8mJIHUtVd-ZdJXtxzdabQ&usqp=CAU'),
-                                        radius: 20,
-                                      ),
-                                      title: Text(
-                                          alarma.tipo + ' : ' + alarma.nombreA),
-                                      subtitle: Text("Fecha" +
-                                          ' :' +
-                                          alarma.fecha
-                                              .toString()
-                                              .substring(0, 10) +
-                                          ' | Hora ' +
-                                          alarma.hora.hour.toString() +
-                                          ":" +
-                                          alarma.hora.minute.toString()),
                                     );
                                   },
                                 );
