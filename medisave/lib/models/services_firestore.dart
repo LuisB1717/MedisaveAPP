@@ -26,6 +26,13 @@ class FirestoreService {
     return _db.doc(id).delete();
   }
 
+  Future<void> updateAlarma(String id, bool estado) {
+    return _db.doc(id).update({'estado': estado});
+  }
+  // Future<void> updateAlarmaF(String id) {
+  //   return _db.doc(id).update({'estado': false});
+  // }
+
   Stream<List<Alarma>> getByfecha(DateTime fechax) {
     return _db
         .where('fecha', isEqualTo: Timestamp.fromDate(fechax))

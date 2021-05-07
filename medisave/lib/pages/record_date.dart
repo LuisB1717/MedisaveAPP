@@ -64,17 +64,38 @@ class _Buscarxfecha extends State<Buscarxfecha> {
                                   itemCount: alarmas.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
+                                    Alarma alarma = snapshot.data[index];
+
                                     return ListTile(
+                                      trailing: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          // Text(alarma.fecha.toString()),
+                                          // Text(alarma.hora.toString()),
+                                          IconButton(
+                                            color: Colors.red,
+                                            icon: Icon(Icons.delete),
+                                            onPressed: () => _deleteAlarma(
+                                                context, alarma.id),
+                                          ),
+                                        ],
+                                      ),
                                       leading: CircleAvatar(
                                         backgroundImage: NetworkImage(
                                             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm4U4e_R3gp6jio8mJIHUtVd-ZdJXtxzdabQ&usqp=CAU'),
                                         radius: 20,
                                       ),
-                                      title: Text(alarmas[index].nombreA),
-                                      subtitle: Text(alarmas[index]
-                                          .fecha
-                                          .toString()
-                                          .substring(0, 10)),
+                                      title: Text(
+                                          alarma.tipo + ' : ' + alarma.nombreA),
+                                      subtitle: Text("Fecha" +
+                                          ' :' +
+                                          alarma.fecha
+                                              .toString()
+                                              .substring(0, 10) +
+                                          ' | Hora ' +
+                                          alarma.hora.hour.toString() +
+                                          ":" +
+                                          alarma.hora.minute.toString()),
                                     );
                                   },
                                 );
@@ -89,5 +110,33 @@ class _Buscarxfecha extends State<Buscarxfecha> {
         ),
       ),
     );
+  }
+
+  void _deleteAlarma(BuildContext context, String id) async {
+    if (await _showConfirmationDialog(context)) {
+      try {
+        await FirestoreService().removeAlarma(id);
+      } catch (e) {
+        print(e);
+      }
+    }
+  }
+
+  Future<bool> _showConfirmationDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) => AlertDialog(
+              content: Text("¿Seguro que desea eliminar la alarma?"),
+              actions: <Widget>[
+                TextButton(
+                    child: Text("Eliminar"),
+                    onPressed: () => Navigator.pop(context, true)),
+                TextButton(
+                  child: Text("No"),
+                  onPressed: () => Navigator.pop(context, false),
+                ),
+              ],
+            ));
   }
 }

@@ -10,9 +10,10 @@ class Alarma {
   String _mensaje;
   DateTime _fecha;
   DateTime _hora;
+  bool _estado = true;
 
   Alarma(this._id, this._nombreA, this._tipo, this._cantidad, this._frecuencia,
-      this._duracion, this._mensaje, this._fecha, this._hora);
+      this._duracion, this._mensaje, this._estado, this._fecha, this._hora);
 
   factory Alarma.fromJson(Map<String, dynamic> json, String id) {
     return Alarma(
@@ -23,6 +24,7 @@ class Alarma {
         json['frecuencia'],
         json['duracion'],
         json['mensaje'],
+        json['estado'],
         DateTime.fromMicrosecondsSinceEpoch(
             json['fecha'].microsecondsSinceEpoch),
         DateTime.fromMicrosecondsSinceEpoch(
@@ -37,6 +39,7 @@ class Alarma {
       'frecuencia': _frecuencia,
       'duracion': _duracion,
       'mensaje': _mensaje,
+      'estado': _estado,
       'fecha': Timestamp.fromDate(_fecha),
       'hora': Timestamp.fromDate(_hora),
     };
@@ -49,6 +52,7 @@ class Alarma {
   int get frecuencia => _frecuencia;
   int get duracion => _duracion;
   String get mensaje => _mensaje;
+  bool get estado => _estado;
   DateTime get fecha => _fecha;
   DateTime get hora => _hora;
 }

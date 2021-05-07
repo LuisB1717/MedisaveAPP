@@ -19,6 +19,7 @@ class _AddalarmaState extends State<Addalarma> {
   final mensaje = TextEditingController();
   final fecha = TextEditingController();
   final hora = TextEditingController();
+  bool estado = true;
   DropdownSearch tipoc;
   TimeOfDay rawHora;
   String medicamentoSeleccionado = "Pastilla";
@@ -285,9 +286,10 @@ class _AddalarmaState extends State<Addalarma> {
                     int.parse(intervalo),
                     int.parse(duracion.text),
                     mensaje.text,
+                    true,
                     DateTime.parse(fecha.text),
                     DateTime(now.year, now.month, now.day, rawHora.hour,
-                      rawHora.minute),
+                        rawHora.minute),
                   ));
                   // donde va?  a ver prueba oe pero arriba esta valuechoose ya le cambie el nombre revisa otra vez
                   //conforme notarioa ver pera

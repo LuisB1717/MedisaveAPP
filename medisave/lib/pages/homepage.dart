@@ -5,7 +5,13 @@ import 'package:medisave/pages/strepAdd.dart';
 import 'package:medisave/widgets/logged_in_widget.dart';
 import 'strepAdd.dart';
 
-class HomePageLogin extends StatelessWidget {
+class HomePageLogin extends StatefulWidget {
+  @override
+  _HomePageLoginState createState() => _HomePageLoginState();
+}
+
+class _HomePageLoginState extends State<HomePageLogin> {
+  bool estado = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +46,17 @@ class HomePageLogin extends StatelessWidget {
                             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTm4U4e_R3gp6jio8mJIHUtVd-ZdJXtxzdabQ&usqp=CAU'),
                         radius: 20,
                       ),
-                      trailing: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          // Text(alarma.fecha.toString()),
-                          // Text(alarma.hora.toString()),
-                          IconButton(
-                            color: Colors.red,
-                            icon: Icon(Icons.delete),
-                            onPressed: () => _deleteAlarma(context, alarma.id),
-                          ),
-                        ],
+                      trailing: Switch(
+                        value: estado,
+                        onChanged: (value) {
+                          setState(() {
+                            estado = value;
+                            _updateteAlarma(alarma.id, value);
+                          });
+                          print(value);
+                        },
                       ),
+
                       /*onTap: () => Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -87,31 +92,11 @@ class HomePageLogin extends StatelessWidget {
     );
   }
 
-  void _deleteAlarma(BuildContext context, String id) async {
-    if (await _showConfirmationDialog(context)) {
-      try {
-        await FirestoreService().removeAlarma(id);
-      } catch (e) {
-        print(e);
-      }
+  void _updateteAlarma(String id, bool estado) async {
+    try {
+      await FirestoreService().updateAlarma(id, estado);
+    } catch (e) {
+      print(e);
     }
-  }
-
-  Future<bool> _showConfirmationDialog(BuildContext context) async {
-    return showDialog(
-        context: context,
-        barrierDismissible: true,
-        builder: (context) => AlertDialog(
-              content: Text("¿Seguro que desea eliminar la alarma?"),
-              actions: <Widget>[
-                TextButton(
-                    child: Text("Eliminar"),
-                    onPressed: () => Navigator.pop(context, true)),
-                TextButton(
-                  child: Text("No"),
-                  onPressed: () => Navigator.pop(context, false),
-                ),
-              ],
-            ));
   }
 }
