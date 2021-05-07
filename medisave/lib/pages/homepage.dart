@@ -5,7 +5,6 @@ import 'package:medisave/pages/home_Card.dart';
 import 'package:medisave/pages/strepAdd.dart';
 import 'package:medisave/widgets/logged_in_widget.dart';
 import 'strepAdd.dart';
-import 'package:android_alarm_manager/android_alarm_manager.dart';
 
 class HomePageLogin extends StatefulWidget {
   @override
