@@ -65,6 +65,7 @@ class _AddalarmaState extends State<Addalarma> {
               ),
               SizedBox(height: 20),
               TextFormField(
+                keyboardType: TextInputType.number,
                 controller: cantidad,
                 decoration: InputDecoration(
                     labelText: 'Cantidad por toma',
@@ -293,8 +294,7 @@ class _AddalarmaState extends State<Addalarma> {
                   ));
                   // donde va?  a ver prueba oe pero arriba esta valuechoose ya le cambie el nombre revisa otra vez
                   //conforme notarioa ver pera
-
-                  // mano a ver prueba con eso queda creo xd pero prueba priemro//corriendo...errrrorrrrrrr donde ah ya, esque es un stirng ps
+                  Navigator.pop(context);
                 },
                 label: Text(
                   "Guardar",
