@@ -16,7 +16,7 @@ class _HomePageLoginState extends State<HomePageLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-          AppBar(backgroundColor: Color(0xff158dad), title: Text('Medisave')),
+          AppBar(backgroundColor: Color(0xff158dad), title: Text('Medisave', style: TextStyle(fontStyle: FontStyle.italic))),
       drawer: LoggedInWidget(),
       body: StreamBuilder(
         stream: FirestoreService().getAlarmas(),

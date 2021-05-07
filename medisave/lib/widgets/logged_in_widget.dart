@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:medisave/Services/auth_2.dart';
 import 'package:medisave/helpers/appcolor.dart';
+import 'package:medisave/pages/configuraciones.dart';
 import 'package:medisave/pages/record_date.dart';
 import 'package:provider/provider.dart';
+
+
 
 class LoggedInWidget extends StatelessWidget {
   @override
@@ -77,7 +80,10 @@ class LoggedInWidget extends StatelessWidget {
                 'Configuraciones',
                 style: TextStyle(color: Colors.white),
               ),
-              onTap: null,
+              onTap: () => (Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => Config()))),
             ),
             SizedBox(height: 8),
             ListTile(
