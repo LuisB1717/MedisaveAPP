@@ -41,4 +41,11 @@ class FirestoreService {
             .map((doc) => Alarma.fromJson(doc.data(), doc.id))
             .toList());
   }
+
+  static Future<Alarma> getById(id) async {
+    QuerySnapshot alarmasSnapshoot = await _db.get();
+    List<Alarma> alarmas =
+        alarmasSnapshoot.docs.map((e) => Alarma.fromJson(e.data(), e.id));
+    return alarmas[0];
+  }
 }
