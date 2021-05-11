@@ -1,11 +1,17 @@
+import 'dart:convert';
 import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:medisave/models/alarma.dart';
 import 'package:medisave/models/services_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void fireAlarm(id) async {
-  /*final alarma = await FirestoreService.getById(id);*/
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  var alarmaString = prefs.getString('Alarma:${id}');
+
+  var alarmaJson = jsonDecode(alarmaString);
+
   print('Alarm Fired at ${DateTime.now()}');
   print('Alarm Fired with id: ${id}');
   FlutterLocalNotificationsPlugin fltrnotifaction =
@@ -27,8 +33,11 @@ void fireAlarm(id) async {
       new NotificationDetails(android: androidDetais, iOS: iosDetail);
 
   var schduledTime = DateTime.now().add(Duration(seconds: 5));
-  await fltrnotifaction.show(0, "ALARMA MEDISAVE",
-      "Hora de Tomar tu Medicamento", generalNotificationDetails);
+  await fltrnotifaction.show(
+      0,
+      "${alarmaJson['tipo']}: ${alarmaJson['nombre']} ",
+      alarmaJson['mensaje'],
+      generalNotificationDetails);
 }
 
 class HomeCard extends StatefulWidget {
@@ -76,13 +85,19 @@ class _HomeCardState extends State<HomeCard> {
             });
 
             if (widget.estado == true) {
-              final result = await AndroidAlarmManager.periodic(
-                  const Duration(seconds: 5), widget.alida, fireAlarm,
-                  startAt: widget.alarma.fecha, exact: true);
-              print(result);
+              await AndroidAlarmManager.periodic(
+                  Duration(minutes: widget.alarma.frecuencia),
+                  widget.alarma.ida,
+                  fireAlarm,
+                  startAt: widget.alarma.hora,
+                  exact: true);
               print("Alarma prendida");
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString(
+                  'Alarma:${widget.alarma.ida}', widget.alarma.toString());
             } else {
-              AndroidAlarmManager.cancel(widget.alida);
+              AndroidAlarmManager.cancel(widget.alarma.ida);
+
               print("Alarma Cancelada");
             }
             // print(value);

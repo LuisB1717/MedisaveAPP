@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Alarma {
@@ -56,6 +58,18 @@ class Alarma {
       'fecha': Timestamp.fromDate(_fecha),
       'hora': Timestamp.fromDate(_hora),
     };
+  }
+
+  String toString() {
+    return jsonEncode({
+      'ida': _ida,
+      'nombre': _nombreA,
+      'tipo': _tipo,
+      'cantidad': _cantidad,
+      'frecuencia': _frecuencia,
+      'duracion': _duracion,
+      'mensaje': _mensaje,
+    });
   }
 
   String get id => _id;
