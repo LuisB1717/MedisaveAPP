@@ -51,7 +51,12 @@ class FirestoreService {
     List<Alarma> alarmas = alarmasSnapshoot.docs
         .map((e) => Alarma.fromJson(e.data(), e.id))
         .toList();
-    return alarmas.length + 1;
+    if (alarmas.isEmpty) {
+      return 1;
+    }
+    List idarray = alarmas.map((e) => e.ida).toList();
+    idarray.sort();
+    return idarray.last + 1;
   }
 
   // static Future<Alarma> cantidad() async {
