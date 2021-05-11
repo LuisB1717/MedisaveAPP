@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/models/services_firestore.dart';
@@ -279,8 +280,10 @@ class _AddalarmaState extends State<Addalarma> {
                 ),
                 onPressed: () async {
                   final now = DateTime.now();
-                  final newAlarma = await FirestoreService.setAlarma(Alarma(
+                  final ida = await FirestoreService.getalarmid();
+                  await FirestoreService.setAlarma(Alarma(
                     'id',
+                    ida,
                     nombrem.text,
                     medicamentoSeleccionado,
                     int.parse(cantidad.text),

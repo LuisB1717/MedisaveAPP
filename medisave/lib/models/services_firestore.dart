@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:medisave/models/alarma.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +22,6 @@ class FirestoreService {
     return _db.add(alarma.toMap());
   }
 
-  //Delete
   Future<void> removeAlarma(String id) {
     return _db.doc(id).delete();
   }
@@ -29,9 +29,6 @@ class FirestoreService {
   Future<void> updateAlarma(String id, bool estado) {
     return _db.doc(id).update({'estado': estado});
   }
-  // Future<void> updateAlarmaF(String id) {
-  //   return _db.doc(id).update({'estado': false});
-  // }
 
   Stream<List<Alarma>> getByfecha(DateTime fechax) {
     return _db
@@ -48,4 +45,19 @@ class FirestoreService {
         alarmasSnapshoot.docs.map((e) => Alarma.fromJson(e.data(), e.id));
     return alarmas[0];
   }
+
+  static Future<int> getalarmid() async {
+    QuerySnapshot alarmasSnapshoot = await _db.get();
+    List<Alarma> alarmas = alarmasSnapshoot.docs
+        .map((e) => Alarma.fromJson(e.data(), e.id))
+        .toList();
+    return alarmas.length + 1;
+  }
+
+  // static Future<Alarma> cantidad() async {
+  //   QuerySnapshot alarmasSnapshoot = await _db.get();
+  //   Counter<Alarma> alarmas =
+  //       alarmasSnapshoot.docs.map((e) => Alarma.fromJson(e.data(), e.id));
+  //   return cantidad;
+  // }
 }

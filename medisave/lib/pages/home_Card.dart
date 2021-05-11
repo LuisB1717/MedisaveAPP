@@ -43,28 +43,12 @@ class HomeCard extends StatefulWidget {
 }
 
 class _HomeCardState extends State<HomeCard> {
-  // FlutterLocalNotificationsPlugin fltrnotifaction =
-
   @override
   void initState() {
     super.initState();
   }
 
   int alid = 1;
-  /*
-  Future _shwoNotification() async {
-    var androidDetais = new AndroidNotificationDetails(
-        "ID", "notifiactionname", "desnotification",
-        importance: Importance.max);
-    var iosDetail = new IOSNotificationDetails();
-    var generalNotificationDetails =
-        new NotificationDetails(android: androidDetais, iOS: iosDetail);
-
-    var schduledTime = DateTime.now().add(Duration(seconds: 5));
-    await fltrnotifaction.show(
-        0, "TIPO Alarma", "TOMAR ALARMA INDICADA", generalNotificationDetails);
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -118,3 +102,18 @@ class _HomeCardState extends State<HomeCard> {
     }
   }
 }
+
+// FlutterLocalNotificationsPlugin fltrnotifaction =
+/*
+  Future _shwoNotification() async {
+    var androidDetais = new AndroidNotificationDetails(
+        "ID", "notifiactionname", "desnotification",
+        importance: Importance.max);
+    var iosDetail = new IOSNotificationDetails();
+    var generalNotificationDetails =
+        new NotificationDetails(android: androidDetais, iOS: iosDetail);
+
+    var schduledTime = DateTime.now().add(Duration(seconds: 5));
+    await fltrnotifaction.show(
+        0, "TIPO Alarma", "TOMAR ALARMA INDICADA", generalNotificationDetails);
+  }*/
