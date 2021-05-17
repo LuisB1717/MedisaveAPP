@@ -4,10 +4,9 @@ import 'package:medisave/Services/auth_2.dart';
 import 'package:medisave/helpers/appcolor.dart';
 import 'package:medisave/pages/ayuda.dart';
 import 'package:medisave/pages/configuraciones.dart';
+import 'package:medisave/pages/recomendaciones.dart';
 import 'package:medisave/pages/record_date.dart';
 import 'package:provider/provider.dart';
-
-
 
 class LoggedInWidget extends StatelessWidget {
   @override
@@ -61,9 +60,15 @@ class LoggedInWidget extends StatelessWidget {
                 endIndent: 18),
             SizedBox(height: 8),
             ListTile(
-              leading: Icon(Icons.person, color: Colors.white),
-              title: Text('Amigos', style: TextStyle(color: Colors.white)),
-              onTap: null,
+              leading:
+                  Icon(Icons.library_add_check_rounded, color: Colors.white),
+              title: Text('Recomendaciones',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () => (Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          RecomendacionesPage()))),
             ),
             SizedBox(height: 8),
             ListTile(
@@ -90,7 +95,7 @@ class LoggedInWidget extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.help, color: Colors.white),
               title: Text('Ayuda', style: TextStyle(color: Colors.white)),
-               onTap: () => (Navigator.push(
+              onTap: () => (Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (BuildContext context) => Ayuda()))),

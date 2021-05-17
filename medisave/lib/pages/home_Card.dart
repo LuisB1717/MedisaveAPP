@@ -86,7 +86,7 @@ class _HomeCardState extends State<HomeCard> {
 
             if (widget.estado == true) {
               await AndroidAlarmManager.periodic(
-                  Duration(minutes: widget.alarma.frecuencia),
+                  Duration(hours: widget.alarma.frecuencia),
                   widget.alarma.ida,
                   fireAlarm,
                   startAt: widget.alarma.hora,
