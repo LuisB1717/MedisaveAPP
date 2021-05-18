@@ -95,18 +95,6 @@ class _AddalarmaState extends State<Addalarma> {
                   });
                 },
               ),
-
-              //IntervaloHoras(),
-              SizedBox(height: 20),
-              TextFormField(
-                controller: duracion,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'Duración',
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              ),
               SizedBox(height: 20),
               TextFormField(
                 controller: mensaje,
@@ -288,7 +276,6 @@ class _AddalarmaState extends State<Addalarma> {
                     medicamentoSeleccionado,
                     int.parse(cantidad.text),
                     int.parse(intervalo),
-                    int.parse(duracion.text),
                     mensaje.text,
                     true,
                     DateTime.parse(fecha.text),
